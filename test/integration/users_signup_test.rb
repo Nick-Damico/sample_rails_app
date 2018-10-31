@@ -29,7 +29,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template "users/show"
-    # assert_select "div.alert", "Welcome to the Sample App!"
-    assert_not flash.empty?
+    assert_select "div.alert", "Welcome to the Sample App!"
+    # assert_not flash.empty?
   end
 end

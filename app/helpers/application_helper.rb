@@ -5,4 +5,11 @@ module ApplicationHelper
     page_title.empty? ? app_title : "#{page_title} | #{app_title}"
   end
 
+  def display_flash(flash)
+    if flash.any?
+      flash.each do |message_type, message|
+        return content_tag(:div, message, class: "alert alert-#{message_type}")
+      end
+    end
+  end
 end
