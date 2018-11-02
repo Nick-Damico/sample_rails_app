@@ -28,6 +28,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                           }}
     end
     follow_redirect!
+    assert is_logged_in?
     assert_template "users/show"
     assert_select "div.alert", "Welcome to the Sample App!"
     # assert_not flash.empty?
