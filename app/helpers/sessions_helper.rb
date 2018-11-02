@@ -23,7 +23,7 @@ module SessionsHelper
   def log_out
     forget(current_user)
     session.delete(:user_id)
-    @current_user = nil  
+    @current_user = nil
   end
 
   def forget(user)
@@ -35,6 +35,6 @@ module SessionsHelper
   def remember(user)
     user.remember
     cookies.permanent.signed[:user_id] = user.id
-    cookies.signed[:remember_token] = user.remember_token
+    cookies.permanent.signed[:remember_token] = user.remember_token
   end
 end

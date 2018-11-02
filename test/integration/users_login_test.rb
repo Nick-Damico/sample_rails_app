@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
+
   setup do
     @user = users(:nicholas)
   end
@@ -56,5 +57,24 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path,      count: 0
     assert_select "a[href=?]", user_path(@user), count: 0
+  end
+
+  test "login with remembering" do
+    get login_path
+    post login_path, params: {session: { email: @user.email,
+                                         password: 'password',
+                                         remember_me: '1'}}
+    follow_redirect!
+    assert_not_empty cookies['remember_token']
+  end
+
+  test "login without remembering" do
+    # Log in to set the cookie.
+    get login_path
+    post login_path, params: {session: { email: @user.email,
+                                         password: 'password',
+                                         remember_me: '0'}}
+    follow_redirect!
+    assert cookies['remember_token'].nil?
   end
 end
