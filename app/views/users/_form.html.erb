@@ -1,0 +1,13 @@
+<%= form_builder.label :name %>
+<%= form_builder.text_field :name, class: 'form-control' %>
+
+<%= form_builder.label :email %>
+<%= form_builder.text_field :email, class: 'form-control' %>
+
+<%= form_builder.label :password %>
+<%= form_builder.password_field :password, class: 'form-control' %>
+
+<%= form_builder.label :password_confirmation, "Confirmation" %>
+<%= form_builder.password_field :password_confirmation, class: 'form-control' %>
+
+<%= form_builder.submit nil, :class => "btn btn-primary" %>
