@@ -37,4 +37,8 @@ module SessionsHelper
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent.signed[:remember_token] = user.remember_token
   end
+
+  def current_user?(user)
+    user == current_user
+  end
 end
