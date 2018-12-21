@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       # Should only be called if 'remember me' checkbox
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       flash[:notice] = "Welcome back #{@user.name}."
-      redirect_to @user
+      redirect_back_or(@user)
     else
       flash.now[:danger] = "Invalid email/password combination"
       render 'new'
